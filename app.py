@@ -317,7 +317,7 @@ def main():
     
     st.markdown("---")
     st.caption("59% of predictions within ±5 points | 89% within ±10 points")
-    st.caption("Created by Alex Swanner | [LinkedIn](https://linkedin.com/in/alexswanner/)")
+    st.caption("Created by Alex Swanner")
 
 if __name__ == "__main__":
     main()
