@@ -419,7 +419,7 @@ def show_coaching_guide():
     st.markdown("**What this means:** Your freshmen and sophomores will naturally develop faster than juniors and seniors. This is amplified by Coordinator TD2 (+14 points for freshmen/sophomores), making young Elite or Star players incredibly valuable for building your program.")
     
     st.markdown("---")
-    st.caption("Created by Alex Swanner | [LinkedIn](https://linkedin.com/in/alexswanner/)")
+    st.caption("Created by Alex Swanner")
 
 def main():
     # Create tabs
