@@ -35,31 +35,31 @@ def get_gsheet_connection():
         st.error(f"Error connecting to Google Sheets: {e}")
         return None
 
-# Coefficients from Dummy_Model_Clean (506 players, outliers removed)
+# ===== UPDATED COEFFICIENTS (610 entries, No Auburn) =====
 coefficients = {
-    'Intercept': 83.40709,
-    'HC_Moti.1': 0.35494,
-    'HC_Moti.2': 2.03755,
-    'OC_Moti.1': 0.62476,
-    'DC_Moti.1': 3.16875,
-    'HC_TD1': 9.49064,
-    'HC_TD2': 2.77841,
-    'HC_TD3': -0.33346,
-    'OC_TD1': 3.08600,
-    'OC_TD2': 1.82702,
-    'OC_TD3': 2.45405,
-    'DC_TD1': -1.44690,
-    'DC_TD2': 14.21596,
-    'DC_TD3': 13.07231,
-    'XP_Penalty': -0.42761
+    'Intercept': 84.3846,
+    'HC_Moti.1': 0.8413,
+    'HC_Moti.2': 1.3696,
+    'OC_Moti.1': 0.1399,
+    'DC_Moti.1': 2.0169,
+    'HC_TD1': 6.3471,
+    'HC_TD2': 1.5988,
+    'HC_TD3': -2.6348,
+    'OC_TD1': 0.9023,
+    'OC_TD2': 0.9902,
+    'OC_TD3': 4.0082,
+    'DC_TD1': 3.5946,
+    'DC_TD2': 1.8137,
+    'DC_TD3': -1.0978,
+    'XP_Penalty': -0.4372
 }
 
 # Development Trait coefficients (baseline is Elite)
 dev_trait_coeffs = {
     'Elite': 0,
-    'Impact': -38.18651,
-    'Normal': -50.53085,
-    'Star': -23.53652
+    'Star': -23.4378,
+    'Impact': -36.3314,
+    'Normal': -47.7393
 }
 
 # DevT to number mapping for database
@@ -72,15 +72,27 @@ dev_trait_num = {
 
 # Position coefficients (baseline is QB)
 position_coeffs = {
-    'QB': 0, 'RB': -4.687237, 'WR': -0.3681322, 'TE': -6.699325,
-    'OL': 3.123435, 'DL': -6.514467, 'DT': -3.839926, 'LB': -10.68404,
-    'S': -2.186808, 'CB': 0.5434067, 'K': 0.2088728, 'P': 0.8526459
+    'QB': 0,
+    'RB': -6.2637,
+    'WR': -2.4537,
+    'TE': -7.1273,
+    'OL': -0.1576,
+    'DL': -8.0265,
+    'LB': -11.7211,
+    'CB': -1.7674,
+    'S': -4.449,
+    'K': -1.98,
+    'P': -2.2867
 }
 
 # Year coefficients (baseline is FR)
 year_coeffs = {
-    'FR': 0, 'FR (RS)': -2.86779, 'SO': -3.145401, 'SO (RS)': -5.05219,
-    'JR': -4.748136, 'JR (RS)': -2.66559, 'SR': 0.08653364
+    'FR': 0,
+    'FR (RS)': -3.7344,
+    'SO': -1.8989,
+    'SO (RS)': -6.2791,
+    'JR': -3.9333,
+    'JR (RS)': -3.0805
 }
 
 # Variable labels
@@ -100,47 +112,51 @@ variable_labels = {
     'DC_TD3': 'DC Talent Developer Tier 3'
 }
 
-# Model performance statistics
+# ===== UPDATED MODEL PERFORMANCE STATISTICS =====
 MODEL_STATS = {
-    'r_squared': 0.9322,
-    'adj_r_squared': 0.9273,
-    'mae': 4.39,
-    'rmse': 5.65,
-    'n': 506
+    'r_squared': 0.92155,
+    'adj_r_squared': 0.92155,
+    'mae': 3.991,
+    'rmse': 5.209,
+    'n': 610
 }
 
-# DevT-specific accuracy data
+# ===== UPDATED DevT-specific accuracy data =====
 DEVT_ACCURACY = {
     'Elite': {
-        'n': 11, 'mae': 8.62,
+        'n': 8,
+        'mae': 8.26,
         'ranges': [
-            {'range': 5, 'percentage': 27.3},
-            {'range': 10, 'percentage': 63.6},
-            {'range': 15, 'percentage': 90.9}
-        ]
-    },
-    'Impact': {
-        'n': 250, 'mae': 4.05,
-        'ranges': [
-            {'range': 5, 'percentage': 68.8},
-            {'range': 10, 'percentage': 94.8},
-            {'range': 15, 'percentage': 99.2}
-        ]
-    },
-    'Normal': {
-        'n': 116, 'mae': 5.5,
-        'ranges': [
-            {'range': 5, 'percentage': 51.7},
-            {'range': 10, 'percentage': 82.8},
-            {'range': 15, 'percentage': 99.1}
+            {'range': 5, 'percentage': 37.5},
+            {'range': 10, 'percentage': 50.0},
+            {'range': 15, 'percentage': 75.0}
         ]
     },
     'Star': {
-        'n': 129, 'mae': 5.39,
+        'n': 145,
+        'mae': 5.60,
         'ranges': [
-            {'range': 5, 'percentage': 48.1},
-            {'range': 10, 'percentage': 86.8},
-            {'range': 15, 'percentage': 97.7}
+            {'range': 5, 'percentage': 51.0},
+            {'range': 10, 'percentage': 86.9},
+            {'range': 15, 'percentage': 96.6}
+        ]
+    },
+    'Impact': {
+        'n': 300,
+        'mae': 3.18,
+        'ranges': [
+            {'range': 5, 'percentage': 72.3},
+            {'range': 10, 'percentage': 98.3},
+            {'range': 15, 'percentage': 99.7}
+        ]
+    },
+    'Normal': {
+        'n': 157,
+        'mae': 4.43,
+        'ranges': [
+            {'range': 5, 'percentage': 62.4},
+            {'range': 10, 'percentage': 93.6},
+            {'range': 15, 'percentage': 98.7}
         ]
     }
 }
@@ -185,7 +201,7 @@ def save_complete_data(prediction_data, actual_points):
         return False
 
 def calculate_prediction(position, year, dev_trait, xp_penalty, coaching_abilities):
-    """Calculate skill points prediction"""
+    """Calculate skill points prediction with floor constraint"""
     prediction = coefficients['Intercept']
     prediction += position_coeffs[position]
     prediction += year_coeffs[year]
@@ -196,12 +212,14 @@ def calculate_prediction(position, year, dev_trait, xp_penalty, coaching_abiliti
         if value:
             prediction += coefficients[var]
     
+    # Apply floor constraint (no negative predictions)
+    prediction = max(0, prediction)
+    
     return prediction
 
-def show_predictor():
-    """Show the skill points predictor tab"""
+def main():
     st.title("🏈 NCAA 26 Skill Points Predictor")
-    st.caption(f"v2.3 | Clean Model (R² = {MODEL_STATS['r_squared']:.4f}, MAE = {MODEL_STATS['mae']:.2f})")
+    st.caption(f"v3.0 | Updated Model (R² = {MODEL_STATS['r_squared']:.5f}, MAE = {MODEL_STATS['mae']:.2f})")
     
     st.markdown("---")
     
@@ -209,7 +227,7 @@ def show_predictor():
     
     col1, col2 = st.columns(2)
     with col1:
-        team_name = st.text_input("Team", placeholder="e.g., Auburn")
+        team_name = st.text_input("Team", placeholder="e.g., Georgia")
     with col2:
         player_name = st.text_input("Player Name", placeholder="e.g., John Smith")
     
@@ -283,7 +301,7 @@ def show_predictor():
         
         st.info(f"""
         **Accuracy for {dev_trait} players** (based on {devt_stats['n']} players)  
-        Typical error: ±{devt_stats['mae']:.1f} points
+        Typical error: ±{devt_stats['mae']:.2f} points
         """)
         
         for acc in devt_stats['ranges']:
@@ -317,119 +335,9 @@ def show_predictor():
                     st.error("Could not save to database")
     
     st.markdown("---")
-    st.caption("59% of predictions within ±5 points | 89% within ±10 points")
+    st.caption("71% of predictions within ±5 points | 94% within ±10 points | 99% within ±15 points")
+    st.caption("Model trained on 610 players (seasons 1-5) | Optimized for early-mid dynasty")
     st.caption("Created by Alex Swanner | [LinkedIn](https://linkedin.com/in/alexswanner/)")
-
-def show_coaching_guide():
-    """Show the coaching guide tab"""
-    st.title("📋 Best Coaching Abilities for Player Development")
-    st.caption("Based on 506 players analyzed")
-    
-    st.info("Only coaching abilities with a clear impact on skill points are shown. More data is needed to understand how other abilities perform.")
-    
-    st.markdown("---")
-    
-    # Rankings
-    st.subheader("🏆 Coaching Ability Rankings")
-    
-    rankings = [
-        ("1. Coordinator Talent Developer Tier 2", "+14 skill points", "Freshmen & Sophomores progress faster"),
-        ("2. Coordinator Talent Developer Tier 3", "+13 skill points", "Starters gain XP faster"),
-        ("3. Head Coach Talent Developer Tier 1", "+10 skill points", "Bonus XP when players drafted"),
-        ("4. Coordinator Motivator Tier 1", "+3 skill points", "Off-season training boost"),
-        ("5. Coordinator Talent Developer Tier 1", "+3 skill points", "Bonus XP when players drafted"),
-        ("6. Head Coach Talent Developer Tier 2", "+3 skill points", "Freshmen & Sophomores progress faster"),
-        ("7. Head Coach Motivator Tier 2", "+2 skill points", "Increase all XP gains")
-    ]
-    
-    for rank, points, description in rankings:
-        st.markdown(f"**{rank}** → **{points}**")
-        st.markdown(f"*{description}*")
-        st.markdown("")
-    
-    st.markdown("---")
-    
-    # Key Insights
-    st.subheader("💡 What This Means for Your Dynasty")
-    
-    st.markdown("""
-    **Coordinators with Talent Developer are game-changers.** Coordinator Talent Developer abilities (Tier 2 and 3) provide the biggest boost to skill points, adding over 25 skill points combined when both are active. When hiring coordinators, prioritize those with the Talent Developer ability over Motivator.
-    
-    **Freshmen and Sophomores develop faster.** The single most impactful ability is Coordinator TD2, which accelerates development for underclassmen. If your coordinators have Talent Developer, there's a good chance they have or will unlock this tier.
-    
-    **Draft success creates a development boost.** HC TD1 provides bonus XP when players get drafted. Since you control your head coach directly, invest coaching points into Talent Developer Tier 1 if you consistently send players to the NFL.
-    
-    **Talent Developer > Motivator for all coaches.** Whether hiring coordinators or building your head coach, Talent Developer abilities provide significantly better skill point generation than Motivator abilities. Prioritize Talent Developer in your coaching tree.
-    """)
-    
-    st.markdown("---")
-    
-    # Strategic Tips
-    st.subheader("🎯 Strategic Tips")
-    
-    st.markdown("""
-    💡 **Hiring Strategy:** When hiring coordinators (OC or DC), prioritize candidates with the **Talent Developer** ability. While you can't see exactly which tiers they've unlocked, Talent Developer abilities have the strongest impact on player development.
-    
-    💡 **Head Coach Focus:** Since you directly control your head coach's progression, prioritize unlocking **HC Talent Developer Tier 1** (+10 skill points) as your first major investment after the base abilities.
-    """)
-    
-    st.markdown("---")
-    
-    # Player Development Factors
-    st.subheader("📈 Player Development Factors")
-    
-    st.markdown("Beyond coaching abilities, certain player characteristics have a major impact on skill point generation:")
-    
-    # Development Trait
-    st.markdown("#### Development Trait Matters Most")
-    st.markdown("A player's development trait is the single biggest factor in how many skill points they earn:")
-    
-    dev_trait_data = [
-        ("**Elite:**", "Baseline (highest development)"),
-        ("**Star:**", "-24 skill points compared to Elite"),
-        ("**Impact:**", "-38 skill points compared to Elite"),
-        ("**Normal:**", "-51 skill points compared to Elite")
-    ]
-    
-    for trait, impact in dev_trait_data:
-        st.markdown(f"{trait} {impact}")
-    
-    st.markdown("")
-    st.markdown("**What this means:** Elite and Star players develop significantly faster than Impact or Normal players. When recruiting, prioritize \"gem\" players—they're more likely to have Elite or Star development traits.")
-    
-    st.markdown("")
-    
-    # Year/Class
-    st.markdown("#### Younger Players Develop Faster")
-    st.markdown("Underclassmen earn more skill points than upperclassmen:")
-    
-    year_data = [
-        ("**Freshmen:**", "Baseline (fastest development)"),
-        ("**Redshirt Freshmen:**", "-3 skill points"),
-        ("**Sophomores:**", "-3 skill points"),
-        ("**Redshirt Sophomores:**", "-5 skill points"),
-        ("**Juniors:**", "-5 skill points"),
-        ("**Redshirt Juniors:**", "-3 skill points")
-    ]
-    
-    for year, impact in year_data:
-        st.markdown(f"{year} {impact}")
-    
-    st.markdown("")
-    st.markdown("**What this means:** Your freshmen and sophomores will naturally develop faster than juniors and seniors. This is amplified by Coordinator TD2 (+14 points for freshmen/sophomores), making young Elite or Star players incredibly valuable for building your program.")
-    
-    st.markdown("---")
-    st.caption("Created by Alex Swanner")
-
-def main():
-    # Create tabs
-    tab1, tab2 = st.tabs(["🎯 Predict Skill Points", "📋 Coaching Guide"])
-    
-    with tab1:
-        show_predictor()
-    
-    with tab2:
-        show_coaching_guide()
 
 if __name__ == "__main__":
     main()
